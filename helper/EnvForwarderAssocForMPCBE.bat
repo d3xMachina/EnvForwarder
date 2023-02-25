@@ -6,7 +6,7 @@ rem To change the files associations for another software, replace the value REG
 rem To revert, change REG_EXE_NAME to your app name and run it again
 
 set "REG_KEY_SEARCH=mpc-be64."
-set "REG_EXE_NAME=PathForwarder.exe"
+set "REG_EXE_NAME=EnvForwarder.exe"
 
 rem Check for permissions
 if "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
