@@ -30,7 +30,7 @@ bool EnvironmentRules::open(const std::string& path)
 
     std::ifstream fProgram(path, std::ios::in);
     if (!fProgram.is_open()) {
-        Log().Get(LOG_WARNING) << "Could not open rule file. Make sure you created a rules.txt file containing your rules!";
+        Log().Get(LOG_ERROR) << "Could not open rule file. Make sure you created a rules.txt file containing your rules!";
         m_ok = false;
         return false;
     }
@@ -72,7 +72,7 @@ bool EnvironmentRules::open(const std::string& path)
             ruleOk = false;
         }
         if (!ruleOk) {
-            Log().Get(LOG_WARNING) << "Invalid rule \"" << line << "\"";
+            Log().Get(LOG_ERROR) << "Invalid rule \"" << line << "\"";
             m_ok = false;
             continue;
         }

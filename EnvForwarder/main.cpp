@@ -55,6 +55,7 @@ int APIENTRY wWinMain(
         return EXIT_FAILURE;
     }
     if (!rules.apply()) {
+        Log().Get(LOG_ERROR) << "Could not apply rules";
         return EXIT_FAILURE;
     }
 
