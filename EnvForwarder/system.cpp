@@ -94,8 +94,7 @@ std::string getEnvironmentVariable(const std::string& env)
     std::wstring wEnv = sm::toWString(env);
     std::string value;
     int size = GetEnvironmentVariableW(&wEnv[0], NULL, 0);
-    if (size > 0)
-    {
+    if (size > 0) {
         std::wstring buffer;
         buffer.resize(size);
         GetEnvironmentVariableW(&wEnv[0], &buffer[0], (DWORD)buffer.size());
@@ -109,10 +108,7 @@ bool setEnvironmentVariable(const std::string& env, const std::string& value)
 {
     std::wstring wEnv = sm::toWString(env);
     std::wstring wValue = sm::toWString(value);
-    if (!SetEnvironmentVariableW(&wEnv[0], &wValue[0]))
-    {
-        return false;
-    }
-    return true;
+    bool ok = SetEnvironmentVariableW(&wEnv[0], &wValue[0]);
+    return ok;
 }
 }

@@ -50,21 +50,17 @@ bool EnvironmentRules::open(const std::string& path)
 
             tokenVariable = line.substr(0, idxSeparatorVariable);
             std::string tokenRule = line.substr(idxSeparatorVariable + 1, idxSeparatorRule - idxSeparatorVariable - 1);
-            if (idxSeparatorRule != std::string::npos)
-            {
+            if (idxSeparatorRule != std::string::npos) {
                 tokenExpression = line.substr(idxSeparatorRule + 1, -1);
             }
 
-            if (tokenRule == "+" || tokenRule == "ADD")
-            {
+            if (tokenRule == "+" || tokenRule == "ADD") {
                 rule.type = RULE_ADD;
             }
-            else if (tokenRule == "-" || tokenRule == "REMOVE")
-            {
+            else if (tokenRule == "-" || tokenRule == "REMOVE") {
                 rule.type = RULE_REMOVE;
             }
-            else
-            {
+            else {
                 ruleOk = false;
             }
         }
