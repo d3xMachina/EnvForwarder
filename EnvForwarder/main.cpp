@@ -1,9 +1,9 @@
-﻿#include <windows.h>
-#include "fileoperation.h"
+﻿#include "fileoperation.h"
 #include "logger.h"
 #include "rules.h"
 #include "stringmanip.h"
 #include "system.h"
+#include <windows.h>
 
 
 bool createDirectories();

@@ -1,8 +1,8 @@
 #include "rules.h"
 #include "logger.h"
-#include <regex>
 #include "system.h"
 #include <fstream>
+#include <regex>
 
 namespace fs = std::filesystem;
 namespace sys = my::system;
