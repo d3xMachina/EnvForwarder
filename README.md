@@ -22,14 +22,15 @@ The syntax of the environment variables rules in "rules.txt" is :
 ENVIRONMENT_VARIABLE OPERATION REGEXP
 ```
 
-Each rule is on a line. There are two operations "ADD" and "REMOVE". You can do multiple operations on a single environment variable.
+Each rule is on a line. There are three operations "APPEND", "PREPEND" and "REMOVE". You can do multiple operations on a single environment variable.
 For the regexp syntax check https://cplusplus.com/reference/regex/ECMAScript/
 
 Example of rules removing python from the environment variables to use another version :
 ```
 PATH REMOVE ;?[^;]*\\AppData\\Local\\Programs\\Python\\[^;]*
-PATH ADD C:\\MyApps\\Python310
-PATH ADD C:\\MyApps\\Python310\\Scripts
+PATH PREPEND C:\\MyApps\\Python310
+PATH PREPEND C:\\MyApps\\Python310\\Scripts
+PYTHONPATH REMOVE .*
 ```
 
 ## License
