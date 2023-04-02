@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnvForwarder", "EnvForwarder\EnvForwarder.vcxproj", "{931AD2A3-B55D-4691-A517-42EBBD6D7176}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnvForwarderCLI", "EnvForwarderCLI\EnvForwarderCLI.vcxproj", "{7D1A3594-204F-45A5-8876-A5965265C901}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{931AD2A3-B55D-4691-A517-42EBBD6D7176}.Release|x64.Build.0 = Release|x64
 		{931AD2A3-B55D-4691-A517-42EBBD6D7176}.Release|x86.ActiveCfg = Release|Win32
 		{931AD2A3-B55D-4691-A517-42EBBD6D7176}.Release|x86.Build.0 = Release|Win32
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Debug|x64.ActiveCfg = Debug|x64
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Debug|x64.Build.0 = Debug|x64
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Debug|x86.ActiveCfg = Debug|Win32
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Debug|x86.Build.0 = Debug|Win32
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Release|x64.ActiveCfg = Release|x64
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Release|x64.Build.0 = Release|x64
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Release|x86.ActiveCfg = Release|Win32
+		{7D1A3594-204F-45A5-8876-A5965265C901}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

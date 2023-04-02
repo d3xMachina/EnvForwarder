@@ -50,7 +50,7 @@ std::string getProgramPath()
     return strPath;
 }
 
-bool startProcess(const std::string& commandLine)
+bool startProcess(const std::string& commandLine, unsigned long& exitCode)
 {
     std::wstring WCommandLine = sm::toWString(commandLine);
     STARTUPINFO si;
@@ -75,9 +75,20 @@ bool startProcess(const std::string& commandLine)
     {
         return false;
     }
+
+    // Wait for the process to finish
+    WaitForSingleObject(pi.hProcess, INFINITE);
+
+    // Get the exit code of the process
+    bool exitCodeOk = GetExitCodeProcess(pi.hProcess, &exitCode);
+    
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 
+    if (!exitCodeOk) {
+        exitCode = EXIT_FAILURE;
+        return false;
+    }
     return true;
 }
 
