@@ -82,10 +82,10 @@ void EnvironmentRules::applyRules(std::string& value, const rules& rules)
 {
     for (const rule& rule : rules) {
         if (rule.type == RULE_ADD) {
-            if (!value.empty() && !value.ends_with(';')) {
-                value += ";";
+            if (!value.empty() && !value.starts_with(';')) {
+                value = ";" + value;
             }
-            value += rule.expression;
+            value = rule.expression + value;
         }
         else if (rule.type == RULE_REMOVE) {
             if (!value.empty()) {
