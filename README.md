@@ -4,7 +4,8 @@ Forwarder that allows you to change environment variables before starting a proc
 
 ## How to use
 
-- Download the release or compile with VS Studio 2022
+- Download the release or compile with VS Studio 2022.
+- If you want to forward to a console application use EnvForwarderCLI.exe as it will also forward the console pipes.
 - Make a folder "EnvForwarder" where "EnvForwarder.exe" is located.
 - Inside this folder, create a file "path.txt" containing the path to the application you want to change the environment variables (example: "c:\Apps\myapp.exe" without the quotes)
 - Replace the calls to your application with this one (see the helper folder for an example) **OR** rename your application to something else and EnvForwarder.exe to your original application name (make sure to fix the path in path.txt in this case).
