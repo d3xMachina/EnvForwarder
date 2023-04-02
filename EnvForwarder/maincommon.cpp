@@ -38,6 +38,9 @@ bool initLogs()
 
 unsigned long run(int argc, wchar_t* argv[])
 {
+    const std::string version = "1.1.0";
+    Log().Get(LOG_INFO) << "EnvForwarder version " << version;
+
     std::string program = sys::getProgramPath();
     fs::path programPath = fs::u8path(program);
     if (!fs::is_regular_file(programPath)) {
