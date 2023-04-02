@@ -53,12 +53,9 @@ std::string getProgramPath()
 bool startProcess(const std::string& commandLine, unsigned long& exitCode)
 {
     std::wstring WCommandLine = sm::toWString(commandLine);
-    STARTUPINFO si;
-    PROCESS_INFORMATION pi;
-
-    ZeroMemory(&si, sizeof(si));
+    STARTUPINFO si = { 0 };
+    PROCESS_INFORMATION pi = { 0 };
     si.cb = sizeof(si);
-    ZeroMemory(&pi, sizeof(pi));
 
     if (!CreateProcessW(
         NULL,
@@ -76,6 +73,19 @@ bool startProcess(const std::string& commandLine, unsigned long& exitCode)
         return false;
     }
 
+    // Close child process when parent dies
+    HANDLE hJob = CreateJobObject(NULL, NULL);
+    JOBOBJECT_EXTENDED_LIMIT_INFORMATION jobExtendedLimitInfo = { 0 };
+    jobExtendedLimitInfo.BasicLimitInformation.LimitFlags |= JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+    if (!SetInformationJobObject(hJob, JobObjectExtendedLimitInformation, &jobExtendedLimitInfo, sizeof(jobExtendedLimitInfo)))
+    {
+        Log().Get(LOG_WARNING) << "Could not make a process job";
+    }
+    else if (!AssignProcessToJobObject(hJob, pi.hProcess))
+    {
+        Log().Get(LOG_WARNING) << "Could not set the process job";
+    }
+
     // Wait for the process to finish
     WaitForSingleObject(pi.hProcess, INFINITE);
 
@@ -84,6 +94,7 @@ bool startProcess(const std::string& commandLine, unsigned long& exitCode)
     
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
+    CloseHandle(hJob);
 
     if (!exitCodeOk) {
         exitCode = EXIT_FAILURE;
