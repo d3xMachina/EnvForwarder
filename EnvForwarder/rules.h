@@ -8,7 +8,8 @@ namespace my
     enum RuleType
     {
         RULE_INVALID,
-        RULE_ADD,
+        RULE_PREPEND,
+        RULE_APPEND,
         RULE_REMOVE
     };
 

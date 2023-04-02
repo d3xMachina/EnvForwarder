@@ -54,8 +54,11 @@ bool EnvironmentRules::open(const std::string& path)
                 tokenExpression = line.substr(idxSeparatorRule + 1, -1);
             }
 
-            if (tokenRule == "+" || tokenRule == "ADD") {
-                rule.type = RULE_ADD;
+            if (tokenRule == "+" || tokenRule == "ADD" || tokenRule == "APPEND") {
+                rule.type = RULE_APPEND;
+            }
+            else if (tokenRule == "PREPEND") {
+                rule.type = RULE_PREPEND;
             }
             else if (tokenRule == "-" || tokenRule == "REMOVE") {
                 rule.type = RULE_REMOVE;
@@ -81,7 +84,13 @@ bool EnvironmentRules::open(const std::string& path)
 void EnvironmentRules::applyRules(std::string& value, const rules& rules)
 {
     for (const rule& rule : rules) {
-        if (rule.type == RULE_ADD) {
+        if (rule.type == RULE_APPEND) {
+            if (!value.empty() && !value.ends_with(';')) {
+                value += ";";
+            }
+            value += rule.expression;
+        }
+        else if (rule.type == RULE_PREPEND) {
             if (!value.empty() && !value.starts_with(';')) {
                 value = ";" + value;
             }
